@@ -7,9 +7,9 @@
 require __DIR__ . '/../../vendor/autoload.php';
 
 require_once 'include/get_default_defined_objects.php';
-use pmaslak\PhpObfuscator;
-use pmaslak\PhpObfuscator\MyPrettyPrinter;
-use pmaslak\PhpObfuscator\Config;
+use bestfornet\PhpObfuscator;
+use bestfornet\PhpObfuscator\MyPrettyPrinter;
+use bestfornet\PhpObfuscator\Config;
 use PhpParser\Error;
 use PhpParser\PrettyPrinter;
 
