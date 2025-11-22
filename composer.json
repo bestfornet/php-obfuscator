@@ -19,7 +19,7 @@
         "php": "^7.1",
         "ext-fileinfo": "*",
         "ext-tokenizer": "*",
-        "nikic/php-parser": "4.10"
+        "nikic/php-parser": "4.11"
     },
     "autoload": {
         "psr-4": {
@@ -27,7 +27,3 @@
         }
     }
 }
-
-
-
-
