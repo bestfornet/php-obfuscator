@@ -28,7 +28,7 @@ function obfuscate($filename)
         $first_line = array_shift($t_source);
         $tmp_filename = tempnam(sys_get_temp_dir(), 'po-');
         file_put_contents($tmp_filename, implode(PHP_EOL, $t_source));
-        $filename = $tmp_filename; // override 
+        $filename = $tmp_filename; // override
     }
 
     try {
@@ -88,7 +88,7 @@ function obfuscate($filename)
         $code = trim($prettyPrinter->prettyPrintFile($stmts));
 
         if (isset($conf->strip_indentation) && $conf->strip_indentation) {
-            $core = new \pmaslak\PhpObfuscator\Core();
+            $core = new \bestfornet\PhpObfuscator\Core();
             $code = $core->minifyPhp($code);
         }
 

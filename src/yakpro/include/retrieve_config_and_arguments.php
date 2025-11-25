@@ -100,7 +100,7 @@ foreach ($t_where As $dummy => $where) {
     }
 }
 
-$conf = new \pmaslak\PhpObfuscator\Config();
+$conf = new \bestfornet\PhpObfuscator\Config();
 
 $conf->silent = true;
 
@@ -114,7 +114,7 @@ if ($config_filename == '') {
     if ($force_conf_silent) $conf->silent = true;
 }
 
-if (!$conf->silent) fprintf(STDERR,"Info:\tyakpro-po version = %s%s", pmaslak\PhpObfuscator\Config::getYakVersion(),PHP_EOL);
+if (!$conf->silent) fprintf(STDERR,"Info:\tyakpro-po version = %s%s", bestfornet\PhpObfuscator\Config::getYakVersion(),PHP_EOL);
 
 
 $pos = array_search('-y', $t_args);

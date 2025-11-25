@@ -1,5 +1,5 @@
 {
-    "name": "pmaslak/php-obfuscator",
+    "name": "bestfornet/php-obfuscator",
     "description": "PHP obfuscator",
     "type": "package",
     "keywords": [
@@ -19,12 +19,11 @@
         "php": "^7.1",
         "ext-fileinfo": "*",
         "ext-tokenizer": "*",
-        "nikic/php-parser": "4.2"
+        "nikic/php-parser": "4.10"
     },
     "autoload": {
         "psr-4": {
-            "pmaslak\\PhpObfuscator\\": "src"
+            "bestfornet\\PhpObfuscator\\": "src"
         }
     }
 }
-

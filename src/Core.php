@@ -3,11 +3,11 @@
  * @author Pawel Maslak <pawel@maslak.it>
  */
 
-namespace pmaslak\PhpObfuscator;
+namespace bestfornet\PhpObfuscator;
 
 use PhpParser\Node\Stmt\Goto_;
 use PhpParser\Node\Stmt\Label;
-use pmaslak\PhpObfuscator\Config;
+use bestfornet\PhpObfuscator\Config;
 use Oil\Exception;
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\ParserFactory;

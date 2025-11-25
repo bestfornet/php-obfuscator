@@ -3,8 +3,8 @@
  * @author Pawel Maslak <pawel@maslak.it>
  */
 
-use pmaslak\PhpObfuscator\Scrambler;
-use pmaslak\PhpObfuscator\MyNodeVisitor;
+use bestfornet\PhpObfuscator\Scrambler;
+use bestfornet\PhpObfuscator\MyNodeVisitor;
 
 $t_scrambler = [];
 $parserElementTypes = ['variable', 'function', 'method', 'property', 'class', 'class_constant', 'constant', 'label'];

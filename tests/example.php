@@ -6,7 +6,7 @@ require '../src/ObfuscatorInterface.php';
 require '../src/Config.php';
 require '../src/Obfuscator.php';
 
-use pmaslak\PhpObfuscator\Obfuscator;
+use bestfornet\PhpObfuscator\Obfuscator;
 
 $obfuscator = new Obfuscator([
     'debug' => false,

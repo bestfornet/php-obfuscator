@@ -11,7 +11,7 @@
 //          Use and abuse at your own risks.
 //========================================================================
 
-namespace pmaslak\PhpObfuscator;
+namespace bestfornet\PhpObfuscator;
 use PhpParser;
 
 class MyPrettyPrinter extends PhpParser\PrettyPrinter\Standard

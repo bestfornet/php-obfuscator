@@ -4,7 +4,7 @@
  * @author Pawel Maslak <pawel@maslak.it>
  */
 
-namespace pmaslak\PhpObfuscator;
+namespace bestfornet\PhpObfuscator;
 
 
 class Config

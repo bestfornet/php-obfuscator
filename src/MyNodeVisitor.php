@@ -3,7 +3,7 @@
  * @author Pawel Maslak <pawel@maslak.it>
  */
 
-namespace pmaslak\PhpObfuscator;
+namespace bestfornet\PhpObfuscator;
 use PhpParser;
 
 //========================================================================
@@ -65,7 +65,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
         global $conf;
         global $t_scrambler;
 
-        if ($conf->obfuscate_loop_statement)                    // loop statements  are replaced by goto ...
+        if (is_object($conf) && $conf->obfuscate_loop_statement) // loop statements are replaced by goto ...
         {
             $scrambler = $t_scrambler['label'];
             if (   ($node instanceof PhpParser\Node\Stmt\For_)   || ($node instanceof PhpParser\Node\Stmt\Foreach_) || ($node instanceof PhpParser\Node\Stmt\Switch_)
@@ -100,12 +100,12 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
         if ($node instanceof PhpParser\Node\Stmt\Class_)             $this->current_class_name = null;
         if ($node instanceof PhpParser\Node\Stmt\ClassConst)         $this->is_in_class_const_definition = false;
 
-        if ($conf->obfuscate_string_literal && $node instanceof PhpParser\Node\Stmt\InlineHTML) {
+        if (is_object($conf) && $conf->obfuscate_string_literal && $node instanceof PhpParser\Node\Stmt\InlineHTML) {
             $node = new PhpParser\Node\Stmt\Echo_([new PhpParser\Node\Scalar\String_($node->value)]);
             $node_modified = true;
         }
 
-        if ($conf->obfuscate_variable_name) {
+        if (is_object($conf) && $conf->obfuscate_variable_name) {
             $scrambler = $t_scrambler['variable'];
             if ($node instanceof PhpParser\Node\Expr\Variable) {
                 $name = $node->name;
@@ -132,7 +132,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_function_name) {
+        if (is_object($conf) && $conf->obfuscate_function_name) {
             $scrambler = $t_scrambler['function'];
             if ($node instanceof PhpParser\Node\Stmt\Function_) {
                 $name = $node->name->name;
@@ -190,7 +190,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_class_name) {
+        if (is_object($conf) && $conf->obfuscate_class_name) {
             $scrambler = $t_scrambler['class'];
             if ($node instanceof PhpParser\Node\Stmt\Class_) {
                 $name = $this->get_identifier_name($node->name);
@@ -269,7 +269,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_interface_name) {
+        if (is_object($conf) && $conf->obfuscate_interface_name) {
             $scrambler = $t_scrambler['class'];
             if ($node instanceof PhpParser\Node\Stmt\Interface_) {
                 $name = $this->get_identifier_name($node->name);
@@ -312,7 +312,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_trait_name) {
+        if (is_object($conf) && $conf->obfuscate_trait_name) {
             $scrambler = $t_scrambler['class'];
             if ($node instanceof PhpParser\Node\Stmt\Trait_) {
                 $name = $this->get_identifier_name($node->name);
@@ -341,7 +341,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_property_name) {
+        if (is_object($conf) && $conf->obfuscate_property_name) {
             $scrambler = $t_scrambler['property'];
             if ( ($node instanceof PhpParser\Node\Expr\PropertyFetch) || ($node instanceof PhpParser\Node\Stmt\PropertyProperty) || ($node instanceof PhpParser\Node\Expr\StaticPropertyFetch) )
             {
@@ -356,7 +356,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_method_name) {
+        if (is_object($conf) && $conf->obfuscate_method_name) {
             $scrambler = $t_scrambler['method'];
             if ( ($node instanceof PhpParser\Node\Stmt\ClassMethod) || ($node instanceof PhpParser\Node\Expr\MethodCall) || ($node instanceof PhpParser\Node\Expr\StaticCall) )
             {
@@ -373,7 +373,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_constant_name)
+        if (is_object($conf) && $conf->obfuscate_constant_name)
         {
             $scrambler = $t_scrambler['constant'];
             if ($node instanceof PhpParser\Node\Expr\FuncCall)      // processing define('constant_name',value);
@@ -435,7 +435,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_class_constant_name) {
+        if (is_object($conf) && $conf->obfuscate_class_constant_name) {
             $scrambler = $t_scrambler['class_constant'];
             if (($node instanceof PhpParser\Node\Const_) && $this->is_in_class_const_definition) {
                 $name = $this->get_identifier_name($node->name);
@@ -461,7 +461,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_namespace_name) {
+        if (is_object($conf) && $conf->obfuscate_namespace_name) {
             $scrambler = $t_scrambler['class'];
             if (($node instanceof PhpParser\Node\Stmt\Namespace_) || ($node instanceof PhpParser\Node\Stmt\UseUse)) {
                 if (isset($node->name->parts)) {
@@ -620,7 +620,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
         }
 
         // label: goto label;   -
-        if ($conf->obfuscate_label_name) {
+        if (is_object($conf) && $conf->obfuscate_label_name) {
             $scrambler = $t_scrambler['label'];
             if (($node instanceof PhpParser\Node\Stmt\Label) || ($node instanceof PhpParser\Node\Stmt\Goto_)) {
                 $name = $node->name;
@@ -635,7 +635,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
         }
 
         // if else elseif   are replaced by goto ...
-        if ($conf->obfuscate_if_statement)  {
+        if (is_object($conf) && $conf->obfuscate_if_statement)  {
             $scrambler = $t_scrambler['label'];
             $ok_to_scramble = false;
             if (($node instanceof PhpParser\Node\Stmt\If_))   // except if function_exists is ther...
@@ -736,7 +736,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->obfuscate_loop_statement)                  // for while do while   are replaced by goto ...
+        if (is_object($conf) && $conf->obfuscate_loop_statement) // for while do while   are replaced by goto ...
         {
             $scrambler = $t_scrambler['label'];
             if ($node instanceof PhpParser\Node\Stmt\For_) {
@@ -877,7 +877,7 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
             }
         }
 
-        if ($conf->shuffle_stmts) {
+        if (is_object($conf) && $conf->shuffle_stmts) {
             if (    ($node instanceof PhpParser\Node\Stmt\Function_)
                 || ($node instanceof PhpParser\Node\Expr\Closure)
                 || ($node instanceof PhpParser\Node\Stmt\ClassMethod)
